@@ -1,0 +1,30 @@
+{
+  "name": "final-project-290-no-scope",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.10",
+    "startbootstrap-clean-blog": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osu-cs290-sp21/final-project-290-no-scope.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osu-cs290-sp21/final-project-290-no-scope/issues"
+  },
+  "homepage": "https://github.com/osu-cs290-sp21/final-project-290-no-scope#readme"
+}
