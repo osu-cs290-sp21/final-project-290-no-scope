@@ -4,8 +4,10 @@ const articleRouter = require('./routes/articles')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/blog', {
-    useNewUrlParser: true, useUnifiedTopology: true
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+    
 })
+
 
 
 app.set('view engine', 'ejs')
@@ -14,7 +16,7 @@ app.use(express.urlencoded({extended:false}))
 
 app.get('/', (req, res)=>{
     const articles = [{
-        title: 'Test Article',
+        title: 'Test Article',  
         createdAt: new Date(),
         description: 'Test Description'
     },
