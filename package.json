@@ -7,6 +7,7 @@
     "@types/mongodb": "^3.6.15",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "mongodb": "https://registry.npmjs.org/mongodb/-/mongodb-3.6.6.tgz",
     "mongoose": "^5.12.10",
     "startbootstrap-clean-blog": "^5.1.0"
   },
