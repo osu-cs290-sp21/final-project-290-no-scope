@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const articleRouter = require('./routes/articles')
-const mongoose = require('mongoose')
-const Article = require('./models/article')
+const mongoose = require('mongoose') //required in order to use MongoDB
+const Article = require('./models/article') //this would be a partial in Handlebars
 const methodOverride = require('method-override')
 
 
