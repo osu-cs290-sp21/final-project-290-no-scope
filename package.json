@@ -5,10 +5,15 @@
   "main": "index.js",
   "dependencies": {
     "@types/mongodb": "^3.6.15",
+    "dompurify": "^2.2.8",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "jsdom": "^16.6.0",
+    "marked": "^2.0.6",
+    "method-override": "^3.0.0",
     "mongodb": "https://registry.npmjs.org/mongodb/-/mongodb-3.6.6.tgz",
     "mongoose": "^5.12.10",
+    "slugify": "^1.5.3",
     "startbootstrap-clean-blog": "^5.1.0"
   },
   "devDependencies": {
