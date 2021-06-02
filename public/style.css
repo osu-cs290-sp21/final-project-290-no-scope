@@ -1,0 +1,58 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.site-title{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+
+/* Text entry fields (New Post/ Edit Post) */
+label{
+    font-size: 18px;
+}
+
+input[type=text-entry], select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.cancel-button{
+    width: 150px;
+    height: 75px;
+    font-size: larger;
+    text-align: center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-right: 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.submit-button{
+    width: 150px;
+    height: 75px;
+    font-size: larger;
+    text-align: center;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    
+}
