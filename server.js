@@ -1,6 +1,15 @@
 const express = require('express')
 const server = express()
 var exphbs = require('express-handlebars')
+var mongoose = require('mongoose'); //required in order to use MongoDB
+const Article = require('./models/article');
+var port = process.env.PORT||3000;
+
+mongoose.connect('mongodb://localhost:27017/blog', {
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+    
+})
+
 /*(var MongoClient = require('mongodb').MongoClient;
 
 var mongoHost = process.env.MONGO_HOST;
@@ -16,15 +25,10 @@ MongoClient.connect({
 })*/
 
 
-const mongoose = require('mongoose') //required in order to use MongoDB
-var port = process.env.PORT||3000;
 
 // Set up MongoDB
 
-mongoose.connect('mongodb://localhost/blog', {
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
-    
-})
+
 
 // Serve static files
 server.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
@@ -33,9 +37,12 @@ server.use(express.static('public'))
 
 // Set up routes
 server.get("/", function(req, res, next){
-    res.status(200).render("homePage",{
-    //serve blog posts from mongodb or other database (figure out how)
+    Article.find({}).lean()
+        .exec(function(err, article){
+        res.status(200).render("homePage",{articles:article});
     })
+
+    
     return;
 });
 
@@ -45,6 +52,15 @@ server.get("/new", function(req, res, next){
     })
     return;
 });
+
+server.get("articles/:id", function(req, res, next){
+    var article =  Article.findOne({id:req.params.id}).lean();
+    if(article == null){res.redirect('404')}
+
+    res.status(200).render('singlePost', {article:Article})
+})
+
+
 
 server.get("/edit/:id", function(req, res, next){
     res.status(200).render("editPost",{
