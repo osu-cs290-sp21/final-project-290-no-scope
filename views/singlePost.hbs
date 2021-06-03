@@ -1,12 +1,10 @@
 <h1>Blog Post</h1>
+<h1>{{article.title}}</h1>
+
 {{#with article}}
     <div class = "full-article">
-        
-        
-        {{>article}}
-        
         <h2>{{title}}</h2>
-        <small>Posted by {{this.author}} on {{this.date}}</small>
+        <small>Posted by {{article.author}} on {{this.createdAt}}</small>
         <br>
         <p class="content">{{this.content}}</p>
     </div>

@@ -53,7 +53,7 @@ server.get("/new", function(req, res, next){
     return;
 });
 
-server.get("articles/:id", function(req, res, next){
+server.get("/:id", function(req, res, next){
     var article =  Article.findOne({id:req.params.id}).lean();
     if(article == null){res.redirect('404')}
 
