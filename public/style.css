@@ -4,6 +4,11 @@ a {text-decoration: none; color: black;}
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(219, 219, 219);
+    border: 1px solid #5e377f;
+}
+
+html{
+    border: 2px solid black;
 }
 
 ul{
@@ -60,9 +65,10 @@ h1.site-title{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color:#5e377f;
-    color: white;
+    
+    color: black;
     text-decoration: none;
+    background-color: orange;
 }
 
 .article-preview{
@@ -84,10 +90,10 @@ h1.site-title{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: orange;
+    background-color:#5e377f;
     color: white;
     text-decoration: none;
-    color: black;
+    color: white;
     border-color: black;
 }
 
@@ -117,7 +123,7 @@ input[type=text-entry], select{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: red;
+    background-color: orange;
     color: white;
     text-decoration: none;
     
