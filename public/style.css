@@ -1,6 +1,14 @@
+* { margin: 0; padding: 0; }
+a {text-decoration: none; color: black;}
+
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(219, 219, 219);
+    border: 1px solid #5e377f;
+}
+
+html{
+    border: 2px solid black;
 }
 
 ul{
@@ -9,65 +17,93 @@ ul{
 
 .navitem-navbar-search{
     box-sizing: border-box;
-   
+    padding-left: 25px;
 }
 
 #navbar-search-input{
+    float: left;
     width: 25%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    /*display: inline-block;*/
+    border: 0px;
+    /*border-radius: 4px;*/
+    /*box-sizing: border-box;*/
+    background-color: #5e3780;
+    outline: 0;
+
+    font-size: 30px;
+    color: white;
+}
+
+#navbar-search-input::placeholder{
+  color: white;
 }
 
 
+.navbar{
+    text-decoration: none;
+    color: white;
+    background-color: #5e3780;
+    font-weight: bolder;
+    /*background-color: greenyellow;*/
+    /*text-align: right;*/
+    padding-top: 9px;
+    padding-bottom: 50px;
+    padding-right: 25px;
+}
 
 .site-title{
-    text-decoration: none;
-    color: black;
-    font-weight: bolder;
+  float: right;
+  color: white;
+}
+
+.Home{
+    padding-left: 5px;
+
 }
 
 .create-post-button{
-    width: 85px;
+    width: 100px;
     height: 50px;
-    font-size: small;
+    font-size: medium;
     text-align: center;
-    padding: 14px 20px;
+    padding: 00px 00px;
     margin: 8px 0;
     margin-left: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color:green;
-    color: white;
+    
+    color: black;
     text-decoration: none;
+    background-color: orange;
 }
 
 .article-preview{
   /*display: flex;*/
   margin: 20px;
   padding: 20px;
-  border: 1px solid #dadada;
+  border: 1px solid orange;
   border-radius: 2px;
   background-color: #fff;
 }
 
 .read-more-button{
-    width: 80px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     font-size: medium;
     text-align: center;
-    padding: 14px 20px;
+    padding: 0px 0px;
     margin: 8px 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: blue;
+    background-color:#5e377f;
     color: white;
     text-decoration: none;
+    color: white;
+    border-color: black;
 }
 
 /* Text entry fields (New Post/ Edit Post) */
@@ -96,10 +132,10 @@ input[type=text-entry], select{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: red;
+    background-color: orange;
     color: white;
     text-decoration: none;
-    
+
 }
 
 .submit-button{
@@ -112,8 +148,8 @@ input[type=text-entry], select{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: blue;
+    background-color:#5e377f;
     color: white;
     text-decoration: none;
-    
+
 }
