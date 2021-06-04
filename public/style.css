@@ -16,37 +16,46 @@ ul{
 }
 
 #navbar-search-input{
+    float: left;
     width: 25%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    /*display: inline-block;*/
+    border: 0px;
+    /*border-radius: 4px;*/
+    /*box-sizing: border-box;*/
+    background-color: #5e3780;
+    outline: 0;
+
+    font-size: 30px;
+    color: white;
+}
+
+#navbar-search-input::placeholder{
+  color: white;
 }
 
 
-.site-title{
+.navbar{
     text-decoration: none;
     color: white;
+    background-color: #5e3780;
     font-weight: bolder;
     /*background-color: greenyellow;*/
-    text-align: right;
+    /*text-align: right;*/
     padding-top: 9px;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
     padding-right: 25px;
 }
 
-h1.site-title{
-   background-color: #5e377f;
-}
-
-.test{
-    background-color: white;
+.site-title{
+  float: right;
+  color: white;
 }
 
 .Home{
-    padding-left: 25px;
+    padding-left: 5px;
+
 }
 
 .create-post-button{
@@ -120,7 +129,7 @@ input[type=text-entry], select{
     background-color: red;
     color: white;
     text-decoration: none;
-    
+
 }
 
 .submit-button{
@@ -136,5 +145,5 @@ input[type=text-entry], select{
     background-color: blue;
     color: white;
     text-decoration: none;
-    
+
 }
