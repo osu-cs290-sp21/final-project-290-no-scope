@@ -1,13 +1,13 @@
-<h1>Home Page</h1>
+<h1 class="Home">Home Page</h1>
 
 <a href='/new'><button type ="submit" class ="create-post-button">Create Post</button></a>
 
 {{#each articles}}
     <div class = "article-preview">
         <h2>{{this.title}}</h2>
+        <p class="description">{{this.description}}</p>
         <small>Posted by {{this.author}} on {{this.createdAt}}</small>
         <br>
-        <p class="description">{{this.description}}</p>
         <a href="/:id"><button type ="submit" class ="read-more-button">Read More</button></a>
     </div>
 {{/each}}

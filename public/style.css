@@ -1,3 +1,6 @@
+* { margin: 0; padding: 0; }
+a {text-decoration: none; color: black;}
+
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(219, 219, 219);
@@ -9,7 +12,7 @@ ul{
 
 .navitem-navbar-search{
     box-sizing: border-box;
-   
+    padding-left: 25px;
 }
 
 #navbar-search-input{
@@ -23,25 +26,41 @@ ul{
 }
 
 
-
 .site-title{
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bolder;
+    /*background-color: greenyellow;*/
+    text-align: right;
+    padding-top: 9px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+}
+
+h1.site-title{
+   background-color: #5e377f;
+}
+
+.test{
+    background-color: white;
+}
+
+.Home{
+    padding-left: 25px;
 }
 
 .create-post-button{
-    width: 85px;
+    width: 100px;
     height: 50px;
-    font-size: small;
+    font-size: medium;
     text-align: center;
-    padding: 14px 20px;
+    padding: 00px 00px;
     margin: 8px 0;
     margin-left: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color:green;
+    background-color:#5e377f;
     color: white;
     text-decoration: none;
 }
@@ -50,24 +69,26 @@ ul{
   /*display: flex;*/
   margin: 20px;
   padding: 20px;
-  border: 1px solid #dadada;
+  border: 1px solid orange;
   border-radius: 2px;
   background-color: #fff;
 }
 
 .read-more-button{
-    width: 80px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     font-size: medium;
     text-align: center;
-    padding: 14px 20px;
+    padding: 0px 0px;
     margin: 8px 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: blue;
+    background-color: orange;
     color: white;
     text-decoration: none;
+    color: black;
+    border-color: black;
 }
 
 /* Text entry fields (New Post/ Edit Post) */
