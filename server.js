@@ -1,8 +1,10 @@
 const express = require('express')
 const server = express()
 var exphbs = require('express-handlebars')
-const Article = require('./models/article');
+var fs = require('fs');
 var port = process.env.PORT||3000;
+
+const Article = require('./models/article');
 
 
 // Serve static files
@@ -10,13 +12,53 @@ server.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
 server.set('view engine', 'hbs')
 server.use(express.static('public'))
 
-// Set up routes
+
+//---Andrews Playground--------------------------------------------------------
+
+//Here is where I connect the blog.db file into db and adding the library
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('blog.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }else{
+    console.log('Connected to the database.');
+  }
+});
+
+//Here I am selecting specific elements from the table I created within the Database
+//And checking for any errores that occure if not I am printing the different elements of the table
+db.serialize(() => {
+  db.each(`SELECT id as id,
+                  title as title,
+                  author as author,
+                  description as description,
+                  content as content,
+                  date as date
+           FROM blog_post`, (err, row) => {
+    if (err) {
+      console.error(err.message);
+      console.log("Cannot find columns")
+    }
+    console.log("------------------------------------------------")
+    console.log(row.id);
+    console.log(row.author)
+    console.log(row.description)
+    console.log(row.content)
+    console.log(row.date)
+    console.log("------------------------------------------------")
+
+  });
+});
+
+
+//-----------------------------------------------------------------------------
+
+
 server.get("/", function(req, res, next){
     Article.find({}).lean()
         .exec(function(err, article){
         res.status(200).render("homePage",{articles:article});
     })
-
 
     return;
 });
@@ -59,4 +101,8 @@ server.get("*", function(req, res){
 // Exports our server for use elsewhere
 module.exports = server
 
-server.listen(port)
+
+
+server.listen(port, function () {
+  console.log("== Server is listening on port", port);
+});
