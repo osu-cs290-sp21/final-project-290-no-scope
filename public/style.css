@@ -149,4 +149,9 @@ input[type=text-entry], select {
   text-decoration: none;
 }
 
+.form-group {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
 /*# sourceMappingURL=style.css.map */
