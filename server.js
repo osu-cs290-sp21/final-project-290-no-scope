@@ -41,8 +41,10 @@ let dbResponse = async () => {
     content as content,
     date as date
     FROM blog_post`
-    
+  
     db.each(query, (err, row) => {
+      console.log("row id:")
+      console.log(row.id)
       if (err) {
         console.error(err.message);
         console.log("Cannot find columns")
@@ -50,12 +52,14 @@ let dbResponse = async () => {
       }
 
       else {
-        console.log(row)
+        console.log("entered else statement")
+        //console.log(row)
         resolve(row)
       }
     })
   }).catch(err => console.log(err));
   
+  console.log(response)
   return response;
 }
 
@@ -67,8 +71,8 @@ server.get("/", async (req, res) => {
   var resp = await dbResponse()
   //console.log(JSON.stringify(resp));
   //var resp2 = [JSON.parse(JSON.stringify(resp))]
-  console.log(resp)
-  res.status(200).render("homePage", { articles: [resp]});
+  //console.log(resp)
+  res.status(200).render("homePage", { articles: resp});
   console.log("GET request recieved from /")
 });
 
@@ -79,13 +83,13 @@ server.get("/new", function (req, res, next) {
 
 });
 
-server.get("/:id", function (req, res, next) {
+/*server.get("/:id", function (req, res, next) {
   var article = Article.findOne({ id: req.params.id }).lean();
   if (article == null) { res.redirect('404') }
 
   res.status(200).render('singlePost', { article: Article })
   console.log("GET request recieved from /:id")
-})
+})*/
 
 
 
