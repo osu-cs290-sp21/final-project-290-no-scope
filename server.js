@@ -50,13 +50,13 @@ let dbResponse = async () => {
       }
 
       else {
-        
+        console.log(row)
         resolve(row)
       }
     })
   }).catch(err => console.log(err));
-  var resp = JSON.parse(JSON.stringify(response))
-  return resp;
+  
+  return response;
 }
 
 //-----------------------------------------------------------------------------
@@ -66,8 +66,9 @@ let dbResponse = async () => {
 server.get("/", async (req, res) => {
   var resp = await dbResponse()
   //console.log(JSON.stringify(resp));
+  //var resp2 = [JSON.parse(JSON.stringify(resp))]
   console.log(resp)
-  res.status(200).render("homePage", { articles: resp });
+  res.status(200).render("homePage", { articles: [resp]});
   console.log("GET request recieved from /")
 });
 
