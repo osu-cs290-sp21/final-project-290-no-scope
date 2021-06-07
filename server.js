@@ -25,42 +25,54 @@ let db = new sqlite3.Database('blog.db', sqlite3.OPEN_READWRITE, (err) => {
   }
 });
 
-//Here I am selecting specific elements from the table I created within the Database
-//And checking for any errores that occure if not I am printing the different elements of the table
-db.serialize(() => {
-  db.each(`SELECT id as id,
-                  title as title,
-                  author as author,
-                  description as description,
-                  content as content,
-                  date as date
-           FROM blog_post`, (err, row) => {
-    if (err) {
-      console.error(err.message);
-      console.log("Cannot find columns")
-    }
-    console.log("------------------------------------------------")
-    console.log(row.id);
-    console.log(row.author)
-    console.log(row.description)
-    console.log(row.content)
-    console.log(row.date)
-    console.log("------------------------------------------------")
+function getPostInfo(){
+  var postArray = new Array() //blank array to hold all posts
+  var iterator = 0;
+  //Here I am selecting specific elements from the table I created within the Database
+  //And checking for any errores that occure if not I am printing the different elements of the table
+  db.serialize(() => {
+    db.each(`SELECT id as id,
+                    title as title,
+                    author as author,
+                    description as description,
+                    content as content,
+                    date as date
+            FROM blog_post`, (err, row) => {
+      if (err) {
+        console.error(err.message);
+        console.log("Cannot find columns")
+      }
+      console.log("------------------------------------------------")
+      console.log(row.id);
+      console.log(row.title)
+      console.log(row.author)
+      console.log(row.description)
+      console.log(row.content)
+      console.log(row.date)
+      console.log("------------------------------------------------")
+      
+      var singleEntry = new Array() //array to represent a single post
+      singleEntry.push(row.id)//0
+      singleEntry.push(row.title)//1
+      singleEntry.push(row.author)//2
+      singleEntry.push(row.description)//3
+      singleEntry.push(row.content)//4
+      singleEntry.push(row.date)//5
+      
+      postArray.push(singleEntry) 
 
+      //Post array is an array of arrays, with each index of the sub array being an element of the post.
+    });
   });
-});
-
+  return postArray;
+}
 
 //-----------------------------------------------------------------------------
 
 
 server.get("/", function(req, res, next){
-    Article.find({}).lean()
-        .exec(function(err, article){
-        res.status(200).render("homePage",{articles:article});
-    })
-
-    return;
+    var posts = getPostInfo()
+    res.status(200).render("homePage",{articles:posts});
 });
 
 server.get("/new", function(req, res, next){
