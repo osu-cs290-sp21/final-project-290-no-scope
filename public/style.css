@@ -87,6 +87,14 @@ ul {
   background-color: #fff;
 }
 
+.full-article{
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid orange;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
 .read-more-button {
   width: 100px;
   height: 50px;

@@ -67,6 +67,67 @@ function getPostInfo(){
   return postArray;
 }
 
+function getSinglePost(idx){
+  var postArray = new Array() //blank array to hold all posts
+  var iterator = 0;
+  //Here I am selecting specific elements from the table I created within the Database
+  //And checking for any errores that occure if not I am printing the different elements of the table
+  db.serialize(() => {
+    db.each(`SELECT id as id,
+                    title as title,
+                    author as author,
+                    description as description,
+                    content as content,
+                    date as date
+            FROM blog_post`, (err, row) => {
+      if (err) {
+        console.error(err.message);
+        console.log("Cannot find columns")
+      }
+     
+      var singleEntry = new Array() //array to represent a single post
+      
+      if(idx == row.id){
+        singleEntry.push(row.id)//0
+        singleEntry.push(row.title)//1
+        singleEntry.push(row.author)//2
+        singleEntry.push(row.description)//3
+        singleEntry.push(row.content)//4
+        singleEntry.push(row.date)//5
+        
+        console.log("------------------------------------------------")
+        console.log(row.id);
+        console.log(row.title)
+        console.log(row.author)
+        console.log(row.description)
+        console.log(row.content)
+        console.log(row.date)
+        console.log("------------------------------------------------")
+        
+
+
+        postArray.push(singleEntry) 
+      //  console.log(postArray)
+        //return postArray;
+      }
+      
+    });
+  });
+  //console.log("returning NULL")
+  if(iterator <= idx){
+    console.log("entered if, returning postArray")
+    return postArray
+  }
+  //these if/else don't work right. TLDR if idx is higher than amount of blog posts, return null and render 404 instead of singlePost.
+  else{
+    console.log("entered else, returning null")
+    return null
+  }
+}
+  
+
+
+
 //-----------------------------------------------------------------------------
 
 
@@ -82,11 +143,17 @@ server.get("/new", function(req, res, next){
     return;
 });
 
-server.get("/:id", function(req, res, next){
-    var article =  Article.findOne({id:req.params.id}).lean();
-    if(article == null){res.redirect('404')}
+server.get("/:idx", function(req, res, next){
+    console.log("Entered /:idx")
+    console.log(req.params.idx)
+    var article = getSinglePost(req.params.idx)
+    console.log("logging article below")
+   // console.log(JSON.stringify(article))
+    if(article == null){
+      console.log("entered if article == null")
+      res.status(404).render('404')}
 
-    res.status(200).render('singlePost', {article:Article})
+    else{res.status(200).render('singlePost', {articles:article})}
 })
 
 
