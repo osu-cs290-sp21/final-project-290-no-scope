@@ -2,14 +2,20 @@
 
 <a href='/new'><button type ="submit" class ="create-post-button">Create Post</button></a>
 
+{{log articles}}
+
 {{#each articles}}
+   {{!-- {{log this}}  --}}
+
+   
     <div class = "article-preview">
         <h2>{{this.title}}</h2>
         <p class="description">{{this.description}}</p>
-        <small>Posted by {{this.author}} on {{this.createdAt}}</small>
+        <small>Posted by {{this.author}} on {{this.date}}</small>
         <br>
         <a href="/:id"><button type ="submit" class ="read-more-button">Read More</button></a>
     </div>
+
 {{/each}}
 
 <!-- Read more button does not work yet. Need to link that to article id to display full thing -->
