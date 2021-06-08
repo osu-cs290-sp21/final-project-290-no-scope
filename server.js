@@ -1,8 +1,10 @@
 const express = require('express')
 const server = express()
+const axios = require('axios').default
 var exphbs = require('express-handlebars')
 var fs = require('fs');
 var port = process.env.PORT||3000;
+
 
 const Article = require('./models/article');
 
@@ -14,6 +16,15 @@ server.use(express.static('public'))
 
 
 //---Andrews Playground--------------------------------------------------------
+//server request will call this function and execute console.log()
+axios.post("/postme", function(req, res, next){
+  if(req.body.author){
+    console.log(req.body.author)
+  }
+})
+
+
+
 
 //Here is where I connect the blog.db file into db and adding the library
 const sqlite3 = require('sqlite3').verbose();
@@ -50,7 +61,7 @@ function getPostInfo(){
       console.log(row.content)
       console.log(row.date)
       console.log("------------------------------------------------")
-      
+
       var singleEntry = new Array() //array to represent a single post
       singleEntry.push(row.id)//0
       singleEntry.push(row.title)//1
@@ -58,8 +69,8 @@ function getPostInfo(){
       singleEntry.push(row.description)//3
       singleEntry.push(row.content)//4
       singleEntry.push(row.date)//5
-      
-      postArray.push(singleEntry) 
+
+      postArray.push(singleEntry)
 
       //Post array is an array of arrays, with each index of the sub array being an element of the post.
     });
@@ -77,9 +88,9 @@ function getSinglePost(idx){
         console.error(err.message);
         console.log("Cannot find columns")
       }
-     
+
       var singleEntry = new Array() //array to represent a single post
-      
+
       if(idx == row.id){
         singleEntry.push(row.id)//0
         singleEntry.push(row.title)//1
@@ -87,11 +98,11 @@ function getSinglePost(idx){
         singleEntry.push(row.description)//3
         singleEntry.push(row.content)//4
         singleEntry.push(row.date)//5
-        
 
-        postArray.push(singleEntry) 
+
+        postArray.push(singleEntry)
       }
-      
+
     });
   })
   return postArray
@@ -102,7 +113,7 @@ function validateIndex(idx){
   var postCounter = 0;
   let sqlQuery = `SELECT COUNT(*) FROM blog_post`
 }
-  
+
 
 
 

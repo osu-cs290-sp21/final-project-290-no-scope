@@ -1,26 +1,33 @@
 
 var searchInput = document.getElementById("navbar-search-input")
 var title = document.getElementById("title")
-var author = document.getElementById("author")
+var author = document.getElementById("author").value
 var description = document.getElementsByClassName("description").value
-//var content = document.getElementById("navbar-search-input").value
+var content = document.getElementById("navbar-search-input").value
 var search = document.getElementById("navbar-search-input")
 
 
 var blogs = document.querySelectorAll(".article-preview")
 
-submitButton = document.getElementsByClassName("submit-button")[0]
-cancelButton = document.getElementsByClassName("cancel-button")[0]
-
-
-
-function insertBlogPost() {
-    console.log("Insert new Blog Posts")
-}
+var submitButton = document.getElementsByClassName("submit-button")[0]
+var cancelButton = document.getElementsByClassName("cancel-button")[0]
+var tru = 1;
 
 function createBlogPost() {
-    console.log("Create a new Blog Post")
+  axios.post("/postme", {
+      author: 'author',
+      title: 'title',
+      description: 'description',
+      content: 'content'
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
+
 
 function update(){
     //console.log("This will be the search")
@@ -42,16 +49,7 @@ search.addEventListener('keyup', function(){
 }
 
 if(submitButton){
-submitButton.addEventListener('click', function(){
+  submitButton.addEventListener('click', function(){
     createBlogPost()
-})
-}
-
-if(cancelButton){
-cancelButton.addEventListener('click', function(){
-    author = ""
-    title = ""
-    description = ""
-    content = ""
-})
+  })
 }
