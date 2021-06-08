@@ -120,10 +120,7 @@ server.get("/", function(req, res, next){
 });
 
 server.get("/new", function(req, res, next){
-    res.status(200).render("newPost",{
-    //serve blog posts from mongodb or other database (figure out how)
-    })
-    return;
+    res.status(200).render("newPost",{})
 });
 
 server.get("/posts/:idx", function(req, res, next){
@@ -136,15 +133,6 @@ server.get("/posts/:idx", function(req, res, next){
 })
 
 
-
-server.get("/edit/:id", function(req, res, next){
-    res.status(200).render("editPost",{
-    //serve blog posts from mongodb or other database (figure out how)
-    })
-    return;
-});
-
-
 server.get("*", function(req, res){
     res.status(404).render("404",{
     //404 Comment not found
@@ -152,15 +140,8 @@ server.get("*", function(req, res){
     return;
 });
 
-// server.get('/blog', (req, res) => {
-//     res.send("Blog Page")
-// })
 
-// Exports our server for use elsewhere
 module.exports = server
-
-
-
 server.listen(port, function () {
   console.log("== Server is listening on port", port);
 });
