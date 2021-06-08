@@ -143,7 +143,8 @@ ul {
 
 /* Text entry fields (New Post/ Edit Post) */
 label {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight:normal;
 }
 
 input[type=text-entry], select {
@@ -162,7 +163,7 @@ input[type=text-entry], select {
   width: 100px;
   height: 50px;
   font-size: medium;
-  padding-right: 14px;
+  padding-right: 20px;
   margin: 8px 0;
   margin-left: 25px;
   border: none;
@@ -199,3 +200,10 @@ input[type=text-entry], select {
   margin-left: 25px;
 }
 
+.error-container{
+  margin: 20px;
+ padding: 20px;
+ border: 3px solid orange;
+ border-radius: 10px;
+ background-color: #fff;
+}
