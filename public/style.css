@@ -73,7 +73,6 @@ ul {
   margin: 8px 0;
   margin-left: 22px;
   border:1px solid black ;
-
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -164,7 +163,7 @@ input[type=text-entry], select {
   font-size: medium;
   margin: 8px 0;
   margin-left: 25px;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -180,7 +179,7 @@ input[type=text-entry], select {
   padding: 0px 0px;
   margin-left: 15px;
 
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   background-color: #5e377f;
