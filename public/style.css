@@ -73,7 +73,7 @@ ul {
   margin: 8px 0;
   margin-left: 22px;
   border:1px solid black ;
-  
+
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -143,8 +143,7 @@ ul {
 
 /* Text entry fields (New Post/ Edit Post) */
 label {
-  font-size: 24px;
-  font-weight:normal;
+  font-size: 18px;
 }
 
 input[type=text-entry], select {
@@ -163,7 +162,6 @@ input[type=text-entry], select {
   width: 100px;
   height: 50px;
   font-size: medium;
-  padding-right: 20px;
   margin: 8px 0;
   margin-left: 25px;
   border: none;
@@ -181,7 +179,7 @@ input[type=text-entry], select {
   text-align: center;
   padding: 0px 0px;
   margin-left: 15px;
- 
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -197,13 +195,6 @@ input[type=text-entry], select {
 }
 
 .new-post-header{
-  margin-left: 25px;
-}
-
-.error-container{
-  margin: 20px;
- padding: 20px;
- border: 3px solid orange;
- border-radius: 10px;
- background-color: #fff;
+  /*margin-left: 25px;*/
+  text-align: center;
 }
