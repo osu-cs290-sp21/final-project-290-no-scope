@@ -87,12 +87,8 @@ ul {
   background-color: #fff;
 }
 
-.full-article{
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid orange;
-  border-radius: 2px;
-  background-color: #fff;
+.hidden {
+  display: none;
 }
 
 .read-more-button {
