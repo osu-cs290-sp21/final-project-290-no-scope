@@ -1,3 +1,4 @@
+<br>
 <h1 class="Home">Recent Blog Entries</h1>
 
 <a href='/new'><button type ="submit" class ="create-post-button">Create Post</button></a>
@@ -8,7 +9,7 @@
         <p class="description">{{this.[3]}}</p>
         <small>Posted by {{this.[2]}} on {{this.[5]}}</small>
         <br>
-        <a href={{this.[0]}}><button type ="submit" class ="read-more-button">Read More</button></a>
+        <a href="/posts/{{this.[0]}}"><button type ="submit" class ="read-more-button">Read More</button></a>
     </div>
 {{/each}}
 

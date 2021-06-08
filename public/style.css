@@ -24,6 +24,8 @@ ul {
 
 #navbar-search-input {
   float: left;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
   width: 30%;
   padding: 0px 20px;
   margin: 0;
@@ -69,8 +71,9 @@ ul {
   text-align: center;
   padding: 0px 0px;
   margin: 8px 0;
-  margin-left: 20px;
-  border: none;
+  margin-left: 22px;
+  border:1px solid black ;
+  
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -82,8 +85,8 @@ ul {
   /*display: flex; */
   margin: 20px;
   padding: 20px;
-  border: 1px solid orange;
-  border-radius: 2px;
+  border: 3px solid orange;
+  border-radius: 10px;
   background-color: #fff;
 }
 
@@ -91,8 +94,8 @@ ul {
  /*display: flex; */
  margin: 20px;
  padding: 20px;
- border: 1px solid orange;
- border-radius: 2px;
+ border: 3px solid orange;
+ border-radius: 10px;
  background-color: #fff;
 }
 
@@ -108,7 +111,7 @@ ul {
   text-align: center;
   padding: 0px 0px;
   margin: 8px 0;
-  border: none;
+  border: 2px solid black;
   border-radius: 5px;
   cursor: pointer;
   background-color: #5e377f;
@@ -133,34 +136,35 @@ input[type=text-entry], select {
 }
 
 .cancel-button {
-  width: 150px;
-  height: 75px;
-  font-size: larger;
-  text-align: center;
-  padding: 14px 20px;
+  width: 100px;
+  height: 50px;
+  font-size: medium;
+  padding-right: 10px;
   margin: 8px 0;
-  margin-right: 25px;
+  margin-left: 25px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: orange;
   color: white;
   text-decoration: none;
+  background-color: orange;
 }
 
 .submit-button {
-  width: 150px;
-  height: 75px;
-  font-size: larger;
+  width: 100px;
+  height: 50px;
+  font-size: medium;
   text-align: center;
-  padding: 14px 20px;
-  margin: 8px 0;
+  padding: 0px 0px;
+  margin-left: 15px;
+ 
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background-color: #5e377f;
   color: white;
   text-decoration: none;
+  border-color: black;
 }
 
 .form-group {
@@ -168,4 +172,7 @@ input[type=text-entry], select {
   padding-left: 25px;
 }
 
+.new-post-header{
+  margin-left: 25px;
+}
 /*# sourceMappingURL=style.css.map */

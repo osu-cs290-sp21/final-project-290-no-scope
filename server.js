@@ -81,6 +81,7 @@ function getSinglePost(idx){
       var singleEntry = new Array() //array to represent a single post
       
       if(idx == row.id){
+        console.log("Entered if idx == row.id")
         singleEntry.push(row.id)//0
         singleEntry.push(row.title)//1
         singleEntry.push(row.author)//2
@@ -90,17 +91,21 @@ function getSinglePost(idx){
         
 
         postArray.push(singleEntry) 
+        /*console.log("returning postArray")
+        return postArray*/
       }
       
     });
+    /*console.log('returning 0')
+    return 0;*/
   })
-  return postArray
+    return postArray
 }
 
 
 function validateIndex(idx){
   var postCounter = 0;
-  let sqlQuery = `SELECT COUNT(*) FROM blog_post`
+ `SELECT COUNT(*) as num FROM blog_post` 
 }
   
 
@@ -121,9 +126,9 @@ server.get("/new", function(req, res, next){
     return;
 });
 
-server.get("/:idx", function(req, res, next){
+server.get("/posts/:idx", function(req, res, next){
     var article = getSinglePost(req.params.idx)
-    if(article == null){
+    if(article === 0){
       console.log("entered if article == null")
       res.status(404).render('404')}
 
