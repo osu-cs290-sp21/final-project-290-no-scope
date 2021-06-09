@@ -133,8 +133,6 @@ server.post('/new', jsonParser, function(req, res){
 var insert = function(req){
   console.log("entered var insert");
   db.run('INSERT INTO blog_post (title, author, description, content, date) VALUES ("'+req.body.title+'","'+req.body.author+'","'+req.body.description+'","'+req.body.content+'", "'+req.body.date+'")');
-
-  window.location.replace("index.html");
 }
 
 
