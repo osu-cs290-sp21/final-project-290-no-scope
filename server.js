@@ -1,33 +1,14 @@
 const express = require('express')
 const server = express()
+//const axios = require('axios').default
 var exphbs = require('express-handlebars')
-var mongoose = require('mongoose'); //required in order to use MongoDB
-const Article = require('./models/article');
+var fs = require('fs');
+const { insertMany } = require('./models/article');
 var port = process.env.PORT||3000;
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json();
 
-mongoose.connect('mongodb://localhost:27017/blog', {
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
-    
-})
-
-/*(var MongoClient = require('mongodb').MongoClient;
-
-var mongoHost = process.env.MONGO_HOST;
-var mongoPort = process.env.MONGO_PORT || 27017
-var mongoUser = process.env.MONGO_USER;
-var mongoPassword = process.env.MONGO_PASSWORD;
-var mongoDBName = process.env.MONGO_DB_NAME;
-
-var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
-
-MongoClient.connect({
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
-})*/
-
-
-
-// Set up MongoDB
-
+const Article = require('./models/article');
 
 
 // Serve static files
@@ -35,39 +16,101 @@ server.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
 server.set('view engine', 'hbs')
 server.use(express.static('public'))
 
-// Set up routes
-server.get("/", function(req, res, next){
-    Article.find({}).lean()
-        .exec(function(err, article){
-        res.status(200).render("homePage",{articles:article});
-    })
 
-    
-    return;
+//---Andrews Playground--------------------------------------------------------
+//server request will call this function and execute console.log()
+
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('blog.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }else{
+    console.log('Connected to the database.');
+  }
+});
+
+function getPostInfo(){
+  var postArray = new Array() //blank array to hold all posts
+  var iterator = 0;
+  db.serialize(() => {
+    db.each(`SELECT id as id,
+                    title as title,
+                    author as author,
+                    description as description,
+                    content as content,
+                    date as date
+            FROM blog_post`, (err, row) => {
+      if (err) {
+        console.error(err.message);
+        console.log("Cannot find columns")
+      }
+
+      var singleEntry = new Array() //array to represent a single post
+      singleEntry.push(row.id)//0
+      singleEntry.push(row.title)//1
+      singleEntry.push(row.author)//2
+      singleEntry.push(row.description)//3
+      singleEntry.push(row.content)//4
+      singleEntry.push(row.date)//5
+
+      postArray.push(singleEntry)
+    });
+  });
+  return postArray;
+}
+
+function getSinglePost(idx){
+  var postArray = new Array() //blank array to hold all posts
+  var iterator = 0;
+  db.serialize(() => {
+    let sql = `SELECT id as id, title as title, author as author, description as description, content as content, date as date FROM blog_post`
+    db.each(sql, (err, row) => {
+      if (err) {
+        console.error(err.message);
+        console.log("Cannot find columns")
+      }
+
+      var singleEntry = new Array() //array to represent a single post
+
+      if(idx == row.id){
+        console.log("Entered if idx == row.id")
+        singleEntry.push(row.id)//0
+        singleEntry.push(row.title)//1
+        singleEntry.push(row.author)//2
+        singleEntry.push(row.description)//3
+        singleEntry.push(row.content)//4
+        singleEntry.push(row.date)//5
+
+        postArray.push(singleEntry)
+      }
+    });
+  })
+    return postArray
+}
+
+
+function validateIndex(idx){
+  var postCounter = 0;
+ `SELECT COUNT(*) as num FROM blog_post`
+}
+
+server.get("/", function(req, res, next){
+    var posts = getPostInfo()
+    res.status(200).render("homePage",{articles:posts});
 });
 
 server.get("/new", function(req, res, next){
-    res.status(200).render("newPost",{
-    //serve blog posts from mongodb or other database (figure out how)
-    })
-    return;
+    res.status(200).render("newPost",{})
 });
 
-server.get("/:id", function(req, res, next){
-    var article =  Article.findOne({id:req.params.id}).lean();
-    if(article == null){res.redirect('404')}
+server.get("/posts/:idx", function(req, res, next){
+    var article = getSinglePost(req.params.idx)
+    if(article === 0){
+      console.log("entered if article == null")
+      res.status(404).render('404')}
 
-    res.status(200).render('singlePost', {article:Article})
+    else{res.status(200).render('singlePost', {articles:article})}
 })
-
-
-
-server.get("/edit/:id", function(req, res, next){
-    res.status(200).render("editPost",{
-    //serve blog posts from mongodb or other database (figure out how)
-    })
-    return;
-});
 
 
 server.get("*", function(req, res){
@@ -77,11 +120,27 @@ server.get("*", function(req, res){
     return;
 });
 
-// server.get('/blog', (req, res) => {
-//     res.send("Blog Page")
-// })
+server.post('/new', jsonParser, function(req, res){
+  console.log("entered server.post")
+  insert(req);
 
-// Exports our server for use elsewhere
+  db.each('SELECT * from blog_post', function(err, row){
+    if(row){
+      console.log('record: ', JSON.stringify(row));
+    }
+  })
+})
+
+var insert = function(req){
+  console.log("entered var insert");
+  db.run('INSERT INTO blog_post (title, author, description, content, date) VALUES ("'+req.body.title+'","'+req.body.author+'","'+req.body.description+'","'+req.body.content+'", "'+req.body.date+'")');
+
+  window.location.replace("index.html");
+}
+
+
+
 module.exports = server
-
-server.listen(port)
+server.listen(port, function () {
+  console.log("== Server is listening on port", port);
+});

@@ -1,15 +1,15 @@
-<h1>Home Page</h1>
+<br>
+<h1 class="Home">Recent Blog Entries</h1>
 
 <a href='/new'><button type ="submit" class ="create-post-button">Create Post</button></a>
 
 {{#each articles}}
     <div class = "article-preview">
-        <h2>{{this.title}}</h2>
-        <small>Posted by {{this.author}} on {{this.createdAt}}</small>
+        <h2 id = "title">{{this.[1]}}</h2>
+        <p class="description">{{this.[3]}}</p>
+        <small>Posted by {{this.[2]}} on {{this.[5]}}</small>
         <br>
-        <p class="description">{{this.description}}</p>
-        <a href="/:id"><button type ="submit" class ="read-more-button">Read More</button></a>
+        <a href="/posts/{{this.[0]}}"><button type ="submit" class ="read-more-button">Read More</button></a>
     </div>
 {{/each}}
 
-<!-- Read more button does not work yet. Need to link that to article id to display full thing -->
