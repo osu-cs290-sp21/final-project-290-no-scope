@@ -35,8 +35,16 @@ function createBlogPost(){
   userRequest.open('post', '/new');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
   userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date":"6-8-2021" }));
+  //window.location.reload(false)
+  window.location.href = "/"
+  //testFunction()
+  //location.href = location
 }
 
+function testFunction(){
+  var childWindow = ""
+  childWindow.location.href="/";
+}
 
 
 function update(){
@@ -66,5 +74,6 @@ search.addEventListener('keyup', function(){
 if(submitButton){
   submitButton.addEventListener('click', function(){
     createBlogPost()
+    //location.href = location
   })
 }
