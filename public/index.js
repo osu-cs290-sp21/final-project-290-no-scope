@@ -1,10 +1,11 @@
-
+//console.log("Trying")
 var searchInput = document.getElementById("navbar-search-input")
 var title = document.getElementById("title")
-var author = document.getElementById("author").value
-var description = document.getElementsByClassName("description").value
-var content = document.getElementById("content").value
+var author = document.getElementById("author")
+var description = document.getElementsByClassName("description")
+var content = document.getElementById("content")
 var search = document.getElementById("navbar-search-input")
+//console.log("search:", search)
 
 
 var blogs = document.querySelectorAll(".article-preview")
@@ -41,7 +42,11 @@ function createBlogPost(){
 function update(){
     //console.log("This will be the search")
     var blogContent = document.getElementsByClassName("article-preview")[0]
+    //console.log("hello")
+    var i = 67
+    //console.log("i: ")
     for(i = 0; i < blogs.length; i++){
+        //console.log("blogs[i]", blogs[i])
         if(blogs[i].textContent.toLowerCase().includes(search.value.toLowerCase()) == false){
             blogs[i].classList.add("hidden")
         }
@@ -53,6 +58,7 @@ function update(){
 
 if(search){
 search.addEventListener('keyup', function(){
+    //console.log("Checking console.log")
     update()
 })
 }
