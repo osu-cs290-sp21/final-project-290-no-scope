@@ -1,9 +1,12 @@
 const express = require('express')
 const server = express()
-const axios = require('axios').default
+//const axios = require('axios').default
 var exphbs = require('express-handlebars')
 var fs = require('fs');
+const { insertMany } = require('./models/article');
 var port = process.env.PORT||3000;
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json();
 
 
 const Article = require('./models/article');
@@ -17,11 +20,15 @@ server.use(express.static('public'))
 
 //---Andrews Playground--------------------------------------------------------
 //server request will call this function and execute console.log()
-axios.post("/postme", function(req, res, next){
+
+/*axios.post("/postme", function(req, res, next){
   if(req.body.author){
     console.log(req.body.author)
   }
-})
+})*/
+
+
+
 
 
 
@@ -53,15 +60,7 @@ function getPostInfo(){
         console.error(err.message);
         console.log("Cannot find columns")
       }
-      console.log("------------------------------------------------")
-      console.log(row.id);
-      console.log(row.title)
-      console.log(row.author)
-      console.log(row.description)
-      console.log(row.content)
-      console.log(row.date)
-      console.log("------------------------------------------------")
-
+     
       var singleEntry = new Array() //array to represent a single post
       singleEntry.push(row.id)//0
       singleEntry.push(row.title)//1
@@ -149,6 +148,23 @@ server.get("*", function(req, res){
     })
     return;
 });
+
+server.post('/new', jsonParser, function(req, res){
+  console.log("entered server.post")
+  insert(req);
+
+  db.each('SELECT * from blog_post', function(err, row){
+    if(row){
+      console.log('record: ', JSON.stringify(row));
+    }
+  })
+})
+
+var insert = function(req){
+  console.log("entered var insert");
+  db.run('INSERT INTO blog_post (title, author, description, content, date) VALUES ("'+req.body.title+'","'+req.body.author+'","'+req.body.description+'","'+req.body.content+'", "'+req.body.date+'")');
+}
+
 
 
 module.exports = server
