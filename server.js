@@ -8,7 +8,6 @@ var port = process.env.PORT||3000;
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json();
 
-
 const Article = require('./models/article');
 
 
@@ -21,19 +20,6 @@ server.use(express.static('public'))
 //---Andrews Playground--------------------------------------------------------
 //server request will call this function and execute console.log()
 
-/*axios.post("/postme", function(req, res, next){
-  if(req.body.author){
-    console.log(req.body.author)
-  }
-})*/
-
-
-
-
-
-
-
-//Here is where I connect the blog.db file into db and adding the library
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('blog.db', sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
@@ -46,8 +32,6 @@ let db = new sqlite3.Database('blog.db', sqlite3.OPEN_READWRITE, (err) => {
 function getPostInfo(){
   var postArray = new Array() //blank array to hold all posts
   var iterator = 0;
-  //Here I am selecting specific elements from the table I created within the Database
-  //And checking for any errores that occure if not I am printing the different elements of the table
   db.serialize(() => {
     db.each(`SELECT id as id,
                     title as title,
@@ -60,7 +44,7 @@ function getPostInfo(){
         console.error(err.message);
         console.log("Cannot find columns")
       }
-     
+
       var singleEntry = new Array() //array to represent a single post
       singleEntry.push(row.id)//0
       singleEntry.push(row.title)//1
@@ -70,8 +54,6 @@ function getPostInfo(){
       singleEntry.push(row.date)//5
 
       postArray.push(singleEntry)
-
-      //Post array is an array of arrays, with each index of the sub array being an element of the post.
     });
   });
   return postArray;
@@ -99,14 +81,9 @@ function getSinglePost(idx){
         singleEntry.push(row.content)//4
         singleEntry.push(row.date)//5
 
-        postArray.push(singleEntry) 
-        /*console.log("returning postArray")
-        return postArray*/
+        postArray.push(singleEntry)
       }
-
     });
-    /*console.log('returning 0')
-    return 0;*/
   })
     return postArray
 }
@@ -116,12 +93,6 @@ function validateIndex(idx){
   var postCounter = 0;
  `SELECT COUNT(*) as num FROM blog_post`
 }
-
-
-
-
-//-----------------------------------------------------------------------------
-
 
 server.get("/", function(req, res, next){
     var posts = getPostInfo()
@@ -163,6 +134,8 @@ server.post('/new', jsonParser, function(req, res){
 var insert = function(req){
   console.log("entered var insert");
   db.run('INSERT INTO blog_post (title, author, description, content, date) VALUES ("'+req.body.title+'","'+req.body.author+'","'+req.body.description+'","'+req.body.content+'", "'+req.body.date+'")');
+
+  window.location.replace("index.html");
 }
 
 

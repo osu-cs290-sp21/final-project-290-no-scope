@@ -14,29 +14,24 @@ var submitButton = document.getElementsByClassName("submit-button")[0]
 var cancelButton = document.getElementsByClassName("cancel-button")[0]
 var tru = 1;
 
-/*function createBlogPost() {
-  axios.post("/postme", {
-      author: 'author',
-      title: 'title',
-      description: 'description',
-      content: 'content'
-    })
-    .then(function (response) {
-      console.log(response)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-}*/
-
 function createBlogPost(){
+  //Gets Date
+  var date = Date(Date.now())
+  var full_date = date.toString()
+
   // request the user from our app's sqlite database
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/new');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date":"6-8-2021" }));
+  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date": full_date }));
+
+  window.location.href = "/"
 }
 
+function testFunction(){
+  var childWindow = ""
+  childWindow.location.href="/";
+}
 
 
 function update(){
