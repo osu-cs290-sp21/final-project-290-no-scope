@@ -1,12 +1,12 @@
 //console.log("Trying")
 var searchInput = document.getElementById("navbar-search-input")
-var title = document.getElementById("title")
+/*var title = document.getElementById("title")
 var author = document.getElementById("author")
 var description = document.getElementsByClassName("description")
-var content = document.getElementById("content")
+var content = document.getElementById("content")*/
 var search = document.getElementById("navbar-search-input")
 //console.log("search:", search)
-
+var createPostButton = document.getElementsByClassName('create-post-button')
 
 var blogs = document.querySelectorAll(".article-preview")
 
@@ -20,12 +20,19 @@ function createBlogPost(){
   var full_date = date.toString()
 
   // request the user from our app's sqlite database
+ 
+  
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/new');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+<<<<<<< Updated upstream
   userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date": full_date }));
 
   window.location.href = "/"
+=======
+  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date":"6-9-2021" }));
+  
+>>>>>>> Stashed changes
 }
 
 function testFunction(){
@@ -60,6 +67,17 @@ search.addEventListener('keyup', function(){
 
 if(submitButton){
   submitButton.addEventListener('click', function(){
+    console.log('entered submitButton event listener')
     createBlogPost()
+    console.log("About to click button")
+    document.getElementsByClassName("cancel-button").click()
   })
 }
+
+
+if(createPostButton){
+  if(!blogs){
+    location.reload()
+  }
+}
+
