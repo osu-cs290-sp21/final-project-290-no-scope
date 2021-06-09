@@ -73,6 +73,7 @@ function getSinglePost(idx){
       var singleEntry = new Array() //array to represent a single post
 
       if(idx == row.id){
+        console.log("Entered if idx == row.id")
         singleEntry.push(row.id)//0
         singleEntry.push(row.title)//1
         singleEntry.push(row.author)//2
@@ -89,7 +90,8 @@ function getSinglePost(idx){
 
 
 function validateIndex(idx){
- 
+  var postCounter = 0;
+ `SELECT COUNT(*) as num FROM blog_post`
 }
 
 server.get("/", function(req, res, next){
@@ -112,7 +114,7 @@ server.get("/posts/:idx", function(req, res, next){
 
 
 server.get("*", function(req, res){
-    res.status(404).render("404Page",{
+    res.status(404).render("404",{
     //404 Comment not found
     })
     return;
@@ -121,7 +123,6 @@ server.get("*", function(req, res){
 server.post('/new', jsonParser, function(req, res){
   console.log("entered server.post")
   insert(req);
-  res.redirect('homePage')
 
   db.each('SELECT * from blog_post', function(err, row){
     if(row){
@@ -133,6 +134,8 @@ server.post('/new', jsonParser, function(req, res){
 var insert = function(req){
   console.log("entered var insert");
   db.run('INSERT INTO blog_post (title, author, description, content, date) VALUES ("'+req.body.title+'","'+req.body.author+'","'+req.body.description+'","'+req.body.content+'", "'+req.body.date+'")');
+
+  window.location.replace("index.html");
 }
 
 
