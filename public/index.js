@@ -6,7 +6,11 @@ var description = document.getElementsByClassName("description")
 var content = document.getElementById("content")*/
 var search = document.getElementById("navbar-search-input")
 //console.log("search:", search)
+<<<<<<< Updated upstream
 var createPostButton = document.getElementsByClassName('create-post-button')[0]
+=======
+var createPostButton = document.getElementsByClassName('create-post-button')
+>>>>>>> Stashed changes
 
 var blogs = document.querySelectorAll(".article-preview")
 
@@ -25,7 +29,12 @@ function createBlogPost(){
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/new');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+<<<<<<< Updated upstream
   userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date": full_date }));
+=======
+  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date":"6-9-2021" }));
+  
+>>>>>>> Stashed changes
 }
 
 
