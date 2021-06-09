@@ -33,7 +33,7 @@ function createBlogPost(){
   const userRequest = new XMLHttpRequest();
   userRequest.open('post', '/new');
   userRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementsById("description").value, "content": document.getElementById("content").value, "date":"6-8-2021" }));
+  userRequest.send(JSON.stringify({'title':document.getElementById("title").value, 'author':document.getElementById("author").value, 'description':document.getElementById("description").value, "content": document.getElementById("content").value, "date":"6-8-2021" }));
 }
 
 
